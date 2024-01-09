@@ -36,6 +36,10 @@ def main():
     st.sidebar.header("Settings")
     signal_type = st.sidebar.radio("Select Signal Type", ("Sinusoidal", "Custom"))
 
+    # Reset button
+    if st.sidebar.button("Reset"):
+        st.experimental_rerun()
+
     # Main content
     st.header("Time-Domain Signal")
 
