@@ -77,6 +77,13 @@ def main():
         The chart above shows how much of each frequency is present in our signal. 
         Higher peaks indicate stronger contributions from specific frequencies.
         """
+        
+        
+        """
+                The chart above represents the time-domain signal you've provided. If you selected a
+        sinusoidal signal, it shows a smooth wave. If you entered a custom signal, it displays
+        the values you specified over time.
+        """
     )
 
     # Continuous Wavelet Transform (CWT) Analysis
