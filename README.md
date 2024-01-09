@@ -53,7 +53,7 @@ Explore Signals with Fourier Analysis is a Streamlit web application that allows
 ![Sinusoidal](images/sinu.png)
 
 ## Select Signal Type - Custom
-![Custom](custom/sinu.png)
+![Custom](images/custom.png)
 
 
 
