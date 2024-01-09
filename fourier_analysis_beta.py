@@ -4,9 +4,6 @@ import streamlit as st
 import pandas as pd
 import pywt
 
-# Define time outside of the main function
-time = np.linspace(0, 1, 1000)
-
 def fft_analysis(signal):
     fft_result = np.fft.fft(signal)
     freq = np.fft.fftfreq(len(signal))
@@ -16,8 +13,11 @@ def cwt_analysis(signal):
     cwt_result, frequencies = pywt.cwt(signal, scales=np.arange(1, 128), wavelet='cmor')
     return cwt_result, frequencies
 
+
+
+
 def main():
-    st.title("Explore Signals with Fourier Analysis")
+    st.title("Explore Mixed Signals with Fourier Analysis")
 
     st.markdown(
         """
@@ -27,7 +27,7 @@ def main():
         that make up a signal. In simple terms, it helps us break down a signal into its
         individual frequencies.
 
-        This app allows you to visualize and analyze signals, helping you understand how
+        This app allows us to visualize and analyze signals, helping us understand how
         different frequencies contribute to the overall signal.
         """
     )
@@ -35,48 +35,54 @@ def main():
     # Sidebar
     st.sidebar.header("Settings")
     signal_type = st.sidebar.radio("Select Signal Type", ("Sinusoidal", "Custom"))
+    
+    time = np.linspace(0, 1, 1000)
+    
+    num_components = st.sidebar.slider("Number of Signal Components", 1, 5, 1)
+    signal_components = []
+
+    for i in range(num_components):
+        freq = st.sidebar.slider(f"Frequency of Component {i + 1}", 1, 10, 5)
+        amplitude = st.sidebar.slider(f"Amplitude of Component {i + 1}", 1.0, 5.0, 1.0)
+        phase = st.sidebar.slider(f"Phase of Component {i + 1}", 0.0, 2 * np.pi, 0.0)
+
+        component = amplitude * np.sin(2 * np.pi * freq * time + phase)
+        signal_components.append(component)
+
+    signal = np.sum(signal_components, axis=0)
+    
 
     # Main content
     st.header("Time-Domain Signal")
 
     if signal_type == "Sinusoidal":
-        frequency = st.sidebar.slider("Select Sinusoidal Frequency", 1, 10, 5)
+        frequency = st.slider("Select Sinusoidal Frequency", 1, 10, 5)
+        time = np.linspace(0, 1, 1000)
         signal = np.sin(2 * np.pi * frequency * time)
     else:
         st.info("Enter your custom time-domain signal below.")
-        num_components = st.sidebar.slider("Number of Signal Components", 1, 5, 1)
-        signal_components = []
+        custom_signal = st.text_area("Custom Signal (comma-separated values)", "1, 2, 3, 2, 1")
+        signal = np.array([float(val) for val in custom_signal.split(",")])
 
-        for i in range(num_components):
-            freq = st.sidebar.slider(f"Frequency of Component {i + 1}", 1, 10, 5)
-            amplitude = st.sidebar.slider(f"Amplitude of Component {i + 1}", 1.0, 5.0, 1.0)
-            phase = st.sidebar.slider(f"Phase of Component {i + 1}", 0.0, 2 * np.pi, 0.0)
-
-            component = amplitude * np.sin(2 * np.pi * freq * time + phase)
-            signal_components.append(component)
-
-        signal = np.sum(signal_components, axis=0)
-
-    st.line_chart(pd.DataFrame({"Signal": signal}))
-
-    st.markdown(
-        """
-        The chart above represents the time-domain signal you've provided. If you selected a
-        sinusoidal signal, it shows a smooth wave. If you entered a custom signal, it displays
-        the values you specified over time.
-        """
-    )
+    st.line_chart(signal)
 
     # Fourier Analysis
     st.header("Fourier Analysis")
 
     fft_freq, fft_magnitude = fft_analysis(signal)
     st.line_chart(pd.DataFrame({"Frequency": fft_freq, "Magnitude": fft_magnitude}))
-
+    
     st.markdown(
         """
-        The chart above shows how much of each frequency is present in your signal. 
+        The chart above shows how much of each frequency is present in our signal. 
         Higher peaks indicate stronger contributions from specific frequencies.
+        """
+        
+        
+        """
+                The chart above represents the time-domain signal you've provided. If you selected a
+        sinusoidal signal, it shows a smooth wave. If you entered a custom signal, it displays
+        the values you specified over time.
         """
     )
 
@@ -91,10 +97,10 @@ def main():
     ax.set_xlabel('Time')
     ax.set_ylabel('Frequency')
     st.pyplot(fig)
-
+    
     st.markdown(
         """
-        The image above represents how different frequencies change over time in your signal. 
+        The image above represents how different frequencies change over time in our signal. 
         Brighter areas indicate higher energy in those frequency components at specific times.
         """
     )
