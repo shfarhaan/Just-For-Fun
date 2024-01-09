@@ -18,6 +18,19 @@ def cwt_analysis(signal):
 
 def main():
     st.title("Explore Signals with Fourier Analysis")
+    
+    
+    st.markdown(
+        """
+        <style>
+        .sidebar .sidebar-content {
+            background-image: linear-gradient(#2e7bcf, #2e7bcf);
+            color: white;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.sidebar.header("Navigation")
     page = st.sidebar.radio("Go to", ["Introduction", "Where do we use Fourier Analysis?", "Time-Domain Signal Analysis"])
