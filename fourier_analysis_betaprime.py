@@ -20,12 +20,12 @@ def main():
     st.title("Explore Signals with Fourier Analysis")
 
     st.sidebar.header("Navigation")
-    page = st.sidebar.radio("Go to", ["Introduction", "Where do we use Fourier Analysis?", "Time-Domain Signal Analysis"])
+    page = st.sidebar.radio("Go to", ["Introduction", "Why Fourier Analysis?", "Time-Domain Signal Analysis"])
 
     if page == "Introduction":
         st.markdown(
             """
-            # **Introduction**
+            ## Introduction
             
             Fourier Analysis is a powerful tool used to understand the different components
             that make up a signal. In simple terms, it helps us break down a signal into its
@@ -33,8 +33,13 @@ def main():
 
             This app allows you to visualize and analyze signals, helping you understand how
             different frequencies contribute to the overall signal.
-            
-            ## **Why Fourier Analysis?**
+            """
+        )
+
+    elif page == "Why Fourier Analysis?":
+        st.markdown(
+            """
+            ## Why Fourier Analysis?
 
             Fourier Analysis is crucial in understanding signals because it allows us to decompose
             complex signals into simpler frequency components. Here are some key reasons why Fourier
@@ -53,62 +58,6 @@ def main():
 
             This Streamlit application empowers you to interactively explore and visualize the effects
             of different frequency components on time-domain signals.
-            
-            
-            """
-        )
-
-    elif page == "Where do we use Fourier Analysis?":
-        st.markdown(
-            """
-            Fourier analysis is used in various fields to understand and analyze complex signals or functions. Here are some key reasons why and where Fourier analysis is employed:
-
-            1. **Frequency Decomposition:**
-            
-            **Signal Decomposition:** Fourier analysis helps break down a complex signal into its individual frequency components. This is crucial in understanding the different harmonic contributions that make up a signal.
-
-            2. **Frequency Spectrum Representation:**
-            
-            **Frequency Spectrum Visualization:** It provides a clear representation of the frequency spectrum of a signal, showing the amplitude and phase information associated with each frequency component.
-
-            3. **Filtering and Signal Processing:**
-            
-            **Filter Design:** Fourier analysis is used to design filters that can isolate or remove specific frequency components from a signal.
-            
-            **Signal Enhancement:** By filtering out unwanted frequencies, it can enhance the relevant components of a signal.
-
-            4. **Data Compression:**
-            
-            **Data Compression Techniques:** In data compression, Fourier analysis is used to transform time-domain data into the frequency domain. This transformation often leads to more efficient compression techniques.
-
-            5. **Communication Systems:**
-            
-            **Modulation and Demodulation:** In communication systems, Fourier analysis is crucial for understanding modulation and demodulation processes. It helps analyze the frequency content of modulated signals.
-
-            6. **Physics and Engineering:**
-            
-            **Vibration Analysis:** In physics and engineering, Fourier analysis is used to analyze vibrations and study the resonant frequencies of structures.
-            
-            **Spectral Analysis:** It is applied in fields such as acoustics, electromagnetics, and optics to analyze spectral characteristics.
-
-            7. **Medical Imaging:**
-            
-            **Magnetic Resonance Imaging (MRI):** Fourier analysis is fundamental in medical imaging techniques like MRI, where signals are transformed between the spatial and frequency domains.
-
-            8. **Audio and Music Processing:**
-            
-            **Audio Signal Processing:** Fourier analysis is extensively used in audio processing, helping in tasks like equalization, filtering, and spectral analysis of sound signals.
-
-            9. **Control Systems:**
-            
-            **Control System Analysis:** Fourier analysis is employed in control system analysis to study the frequency response of systems.
-
-            10. **Quantum Mechanics:**
-            
-            **Quantum Mechanics:** In quantum mechanics, Fourier transforms are used to switch between position and momentum representations of wave functions.
-
-            In summary, Fourier analysis provides a valuable tool for understanding the frequency content of signals and has applications in a wide range of scientific, engineering, and technological fields. It allows researchers and practitioners to gain insights into the behavior of complex systems and signals in both time and frequency domains.
-                            
             """
         )
 
