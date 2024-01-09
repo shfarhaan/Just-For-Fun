@@ -13,8 +13,24 @@ def cwt_analysis(signal):
     cwt_result, frequencies = pywt.cwt(signal, scales=np.arange(1, 128), wavelet='cmor')
     return cwt_result, frequencies
 
+
+
+
 def main():
-    st.title("Fourier Analysis App")
+    st.title("Explore Mixed Signals with Fourier Analysis")
+
+    st.markdown(
+        """
+        ## Introduction
+        
+        Fourier Analysis is a powerful tool used to understand the different components
+        that make up a signal. In simple terms, it helps us break down a signal into its
+        individual frequencies.
+
+        This app allows us to visualize and analyze signals, helping us understand how
+        different frequencies contribute to the overall signal.
+        """
+    )
 
     # Sidebar
     st.sidebar.header("Settings")
@@ -55,6 +71,13 @@ def main():
 
     fft_freq, fft_magnitude = fft_analysis(signal)
     st.line_chart(pd.DataFrame({"Frequency": fft_freq, "Magnitude": fft_magnitude}))
+    
+    st.markdown(
+        """
+        The chart above shows how much of each frequency is present in our signal. 
+        Higher peaks indicate stronger contributions from specific frequencies.
+        """
+    )
 
     # Continuous Wavelet Transform (CWT) Analysis
     st.header("Continuous Wavelet Transform (CWT) Analysis")
@@ -67,6 +90,13 @@ def main():
     ax.set_xlabel('Time')
     ax.set_ylabel('Frequency')
     st.pyplot(fig)
+    
+    st.markdown(
+        """
+        The image above represents how different frequencies change over time in our signal. 
+        Brighter areas indicate higher energy in those frequency components at specific times.
+        """
+    )
 
 if __name__ == "__main__":
     main()
