@@ -20,12 +20,12 @@ def main():
     st.title("Explore Signals with Fourier Analysis")
     
     
+    # Custom style for fixed sidebar
     st.markdown(
         """
         <style>
         .sidebar .sidebar-content {
-            background-image: linear-gradient(#2e7bcf, #2e7bcf);
-            color: white;
+            position: fixed;
         }
         </style>
         """,
