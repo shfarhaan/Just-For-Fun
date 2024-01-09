@@ -43,7 +43,31 @@ def main():
         frequency = st.sidebar.slider("Select Sinusoidal Frequency", 1, 10, 5)
         signal = np.sin(2 * np.pi * frequency * time)
     else:
-        st.info("Enter your custom time-domain signal below.")
+        st.info("Adjust your custom time-domain signal from the side bar.")
+        st.markdown(
+            """
+            ### Customizing the Time-Domain Signal in the Sidebar
+
+            The sidebar customization allows you to interactively choose or customize the time-domain signal that you want to analyze. Here's a breakdown of the customization options:
+
+            #### Sinusoidal Signal
+
+            If you select "Sinusoidal" as the signal type, the app generates a simple sinusoidal signal. You can customize the frequency of this sinusoidal signal using a slider in the sidebar. Adjust the "Select Sinusoidal Frequency" slider to set the frequency of the sine wave. The resulting sinusoidal signal is displayed in the chart.
+
+            #### Custom Signal
+
+            If you choose "Custom" as the signal type, the app provides more flexibility. You can adjust a custom time-domain signal by specifying its components in the sidebar. Here are the customization options:
+
+            1. **Number of Signal Components:** Use the "Number of Signal Components" slider to specify how many frequency components you want to include in your custom signal.
+
+            2. **Frequency, Amplitude, and Phase of Each Component:** For each component, sliders are available to set the frequency, amplitude, and phase. Adjust the sliders for "Frequency of Component," "Amplitude of Component," and "Phase of Component" to define the characteristics of each frequency component.
+
+            3. **Generated Custom Signal:** The app dynamically generates a custom signal based on the specified components. The resulting time-domain signal, composed of the sum of these components, is displayed in the chart.
+
+            Feel free to experiment with these settings to observe how changes in frequency, amplitude, and phase affect the appearance of the time-domain signal.
+
+            """
+        )
         num_components = st.sidebar.slider("Number of Signal Components", 1, 5, 1)
         signal_components = []
 
